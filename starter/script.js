@@ -35,8 +35,11 @@ const init = function () {
   currentS1.textContent = 0;
 
   diceEl.classList.add('hidden');
+  document.querySelector('#name--0').textContent = 'player 1';
+  document.querySelector('#name--1').textContent = 'player 2';
   player0El.classList.remove('player--winner');
   player1El.classList.remove('player--winner');
+
   player0El.classList.add('player--active');
   player1El.classList.remove('player--active');
 };
@@ -84,7 +87,7 @@ btnHold.addEventListener('click', function () {
       ? (score0El.textContent = scores[0])
       : (score1El.textContent = scores[1]);
 
-    if (scores[activePlayer] >= 20) {
+    if (scores[activePlayer] >= 10) {
       playing = false;
       diceEl.classList.add('hidden');
 
@@ -94,10 +97,8 @@ btnHold.addEventListener('click', function () {
       document
         .querySelector(`.player--${activePlayer}`)
         .classList.remove('player--active');
-
-      //  FIXME
-      //   document.querySelectorAll('.name')[activePlayer].textContent =
-      //     '🥇 Winner';
+      document.querySelectorAll('.name')[activePlayer].textContent =
+        '🥇 Winner';
     } else {
       switchPlayer();
     }
