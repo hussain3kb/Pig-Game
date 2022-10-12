@@ -74,6 +74,8 @@ btnRole.addEventListener('click', function () {
       document.getElementById(`current--${activePlayer}`).textContent =
         currentScore;
     } else {
+      const audio = new Audio('haha.mp3');
+      audio.play();
       switchPlayer();
     }
   }
