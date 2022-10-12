@@ -15,12 +15,6 @@ const btnHold = document.querySelector('.btn--hold');
 const currentS0 = document.querySelector('#current--0');
 const currentS1 = document.querySelector('#current--1');
 
-// /////////////////////starting contditions
-// let scores = [0, 0];
-// let activePlayer = 0;
-// let currentScore = 0;
-// let playing = true;
-
 let scores, currentScore, activePlayer, playing;
 
 const init = function () {
@@ -42,6 +36,10 @@ const init = function () {
 
   player0El.classList.add('player--active');
   player1El.classList.remove('player--active');
+  
+  if (currentScore === 0) {
+    btnNew.style.display = 'none';
+  }
 };
 
 init();
@@ -56,19 +54,17 @@ const switchPlayer = function () {
   player1El.classList.toggle('player--active');
 };
 
-/////////////////////////////Roling dice functionality//////////////
 let dice = Math.trunc(Math.random() * 6) + 1;
 
 btnRole.addEventListener('click', function () {
   if (playing) {
-    //////////genrating random number//////////
     const dice = Math.trunc(Math.random() * 6) + 1;
 
-    ////////////////Roling dice////////////////////////////
     diceEl.classList.remove('hidden');
     diceEl.src = `dice-${dice}.png`;
+    
+    btnNew.style.display = 'initial';
 
-    //////////////// check if dice in no = 1/////////////
     if (dice !== 1) {
       currentScore = currentScore + dice;
       document.getElementById(`current--${activePlayer}`).textContent =
